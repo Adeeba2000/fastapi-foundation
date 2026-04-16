@@ -3,13 +3,9 @@ from typing import Union
 from fastapi import FastAPI, Path, HTTPException, Query
 from fastapi.responses import HTMLResponse
 
-app = FastAPI()
+from data.users import users
 
-users = [
-    {"id": 1, "name": "Aman", "email": "aman@example.com"},
-    {"id": 2, "name": "Sara", "email": "sara@example.com"},
-    {"id": 3, "name": "Rahul", "email": "rahul@example.com"}
-]
+app = FastAPI()
 
 @app.get("/", response_class= HTMLResponse)
 def home():
@@ -28,6 +24,7 @@ def get_specific_user(id: int = Path(..., description= 'ID of the user in the DB
     
     raise HTTPException(status_code=404, detail="User not found")
 
+# Query Params
 @app.get("/sort")
 def sort_users(sort_by :Union[int, str]= Query(..., description = 'Sort on the basis of id, name'), order: str= Query('asc', description= 'Sort in asc or desc order.')):
     if sort_by not in ['id', 'name']:
