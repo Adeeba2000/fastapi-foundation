@@ -9,6 +9,18 @@ class User(BaseModel):
     is_active: bool
     role: str
 
+class UserCreate(BaseModel):
+    name: str
+    email: EmailStr
+    password: str
+    age: int
+    city: str
+    role: str
+
+class UserLogin(BaseModel):
+    email: EmailStr
+    password: str
+    
 class UserResponse(BaseModel):
     id: int
     name: str

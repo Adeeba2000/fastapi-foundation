@@ -9,5 +9,6 @@ class User(Base):
     email = Column(String, unique=True)
     age = Column(Integer)
     city = Column(String)
-    is_active = Column(Boolean)
+    is_active = Column(Boolean, default=True)
     role = Column(String)
+    hashed_password = Column(String)
